@@ -864,9 +864,9 @@ if DevANGEL:sismember(ANGEL..'ANGEL:Tkeed:'..Chat_Id2, data.sender_user_id_) the
 HTTPS.request("https://api.telegram.org/bot"..TokenBot.."/restrictChatMember?chat_id="..Chat_Id2.."&user_id="..data.sender_user_id_.."&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
 DevANGEL:srem(ANGEL..'ANGEL:Tkeed:'..Chat_Id2, data.sender_user_id_)
 DeleteMessage(Chat_Id2,{[0] = MsgId2})
-return https.request("https://api.telegram.org/bot"..TokenBot..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("⌔ تم الغاء تقيدك من المجموعه بنجاح .")..'&show_alert=true')
+return https.request("https://api.telegram.org/bot"..TokenBot..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("⌯ تم الغاء تقيدك من المجموعه بنجاح .")..'&show_alert=true')
 else
-return https.request("https://api.telegram.org/bot"..TokenBot..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("⌔ عذرا هذا الامر لكشف الروبوت وليس لك .")..'&show_alert=true')
+return https.request("https://api.telegram.org/bot"..TokenBot..'/answercallbackquery?callback_query_id='..data.id_..'&text='..URL.escape("⌯ عذرا هذا الامر لكشف الروبوت وليس لك .")..'&show_alert=true')
 end 
 end
 end
@@ -1147,24 +1147,24 @@ if text == '/start' or text == 'رجوع ،🔙‘' then
 if SecondSudo(msg) then 
 local Sudo_Welcome = '⌯︙مرحبا عزيزي المطور \n⌯︙انت المطور الاساسي هنا \n⌯︙اليك ازرار سورس انجل \n⌯︙تستطيع التحكم بكل الاوامر فقط اضغط على الامر الذي تريد تنفيذه'
 local key = {
-{'وضع اسم البوت','↫ تحديث ⌔','وضع كليشه المطور'},
-{'↫ المطورين ⌔','↫ الاحصائيات ⌔'},
-{'↫ المجموعات ⌔','روابط الكروبات','↫ المشتركين ⌔'},
-{'↫ تعطيل التواصل ⌔','↫ تفعيل التواصل ⌔'},
-{'تنظيف الكروبات','↫ قائمه العام ⌔','تنظيف المشتركين'},
-{'↫ تغير المطور الاساسي ⌔'},
+{'وضع اسم البوت','↫ تحديث ⌯','وضع كليشه المطور'},
+{'↫ المطورين ⌯','↫ الاحصائيات ⌯'},
+{'↫ المجموعات ⌯','روابط الكروبات','↫ المشتركين ⌯'},
+{'↫ تعطيل التواصل ⌯','↫ تفعيل التواصل ⌯'},
+{'تنظيف الكروبات','↫ قائمه العام ⌯','تنظيف المشتركين'},
+{'↫ تغير المطور الاساسي ⌯'},
 {'تعطيل ترحيب البوت','تفعيل ترحيب البوت'},
-{'↫ تغير معلومات الترحيب ⌔'},
-{'↫ تعطيل المغادره ⌔','↫ تفعيل المغادره ⌔'},
-{'↫ تعطيل الاذاعه ⌔','↫ تفعيل الاذاعه ⌔'},
-{'↫ اذاعه بالتثبيت ⌔'},
-{'↫ اذاعه عام ⌔','↫ اذاعه خاص ⌔'},
-{'↫ اذاعه عام بالتوجيه ⌔','↫ اذاعه خاص بالتوجيه ⌔'},
+{'↫ تغير معلومات الترحيب ⌯'},
+{'↫ تعطيل المغادره ⌯','↫ تفعيل المغادره ⌯'},
+{'↫ تعطيل الاذاعه ⌯','↫ تفعيل الاذاعه ⌯'},
+{'↫ اذاعه بالتثبيت ⌯'},
+{'↫ اذاعه عام ⌯','↫ اذاعه خاص ⌯'},
+{'↫ اذاعه عام بالتوجيه ⌯','↫ اذاعه خاص بالتوجيه ⌯'},
 {'~ تعيين كلايش الاوامر ~'},
 {'تعطيل البوت الخدمي','تفعيل البوت الخدمي'},
 {'جلب نسخه السورس','تحديث السورس','جلب نسخه الكروبات'},
-{'↫ حذف رد عام ⌔','↫ الردود العام ⌔','↫ اضف رد عام ⌔'},
-{'↫ حذف رد الخاص ⌔','↫ تعيين رد الخاص ⌔'},
+{'↫ حذف رد عام ⌯','↫ الردود العام ⌯','↫ اضف رد عام ⌯'},
+{'↫ حذف رد الخاص ⌯','↫ تعيين رد الخاص ⌯'},
 {'حذف قناة الاشتراك','قناة الاشتراك','تعيين قناة الاشتراك'},
 {'حذف كليشه الاشتراك','كليشه الاشتراك','تغير كليشه الاشتراك'},
 }
@@ -1188,7 +1188,7 @@ end end
 if text == '/start' and ChCheck(msg) then  
 if not DevANGEL:get(ANGEL..'ANGEL:Start:Time'..msg.sender_user_id_) then
 tdcli_function({ID="GetUser",user_id_=DevId},function(arg,dp) 
-local inline = {{{text="⌔ المطور .",url="t.me/"..(dp.username_ or "Vc33h")}}}
+local inline = {{{text="⌯ المطور .",url="t.me/"..(dp.username_ or "Vc33h")}}}
 local start = DevANGEL:get(ANGEL.."ANGEL:Start:Bot")
 if start then 
 Start_Source = start
@@ -1270,12 +1270,12 @@ DevANGEL:del(ANGEL..'ANGEL:Start:Bots'..msg.sender_user_id_)
 return false
 end
 if SecondSudo(msg) then
-if text == 'تعيين رد الخاص' or text == 'ضع كليشه ستارت' or text == '↫ تعيين رد الخاص ⌔' then 
+if text == 'تعيين رد الخاص' or text == 'ضع كليشه ستارت' or text == '↫ تعيين رد الخاص ⌯' then 
 DevANGEL:set(ANGEL..'ANGEL:Start:Bots'..msg.sender_user_id_,true) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙ارسل لي كليشة الستارت الان', 1, 'md')
 return false
 end
-if text == 'حذف رد الخاص' or text == 'حذف كليشه ستارت' or text == '↫ حذف رد الخاص ⌔' then 
+if text == 'حذف رد الخاص' or text == 'حذف كليشه ستارت' or text == '↫ حذف رد الخاص ⌯' then 
 DevANGEL:del(ANGEL..'Start:Bot') 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙تم حذف كليشة الستارت بنجاح', 1, 'md')
 end
@@ -1289,12 +1289,12 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, Start_Source, 1, 'md')
 return false
 end
-if text == 'تفعيل التواصل' or text == '↫ تفعيل التواصل ⌔' then   
+if text == 'تفعيل التواصل' or text == '↫ تفعيل التواصل ⌯' then   
 local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تفعيل التواصل بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:del(ANGEL..'ANGEL:Texting:Pv') 
 end
-if text == 'تعطيل التواصل' or text == '↫ تعطيل التواصل ⌔' then  
+if text == 'تعطيل التواصل' or text == '↫ تعطيل التواصل ⌯' then  
 local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تعطيل التواصل بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:set(ANGEL..'ANGEL:Texting:Pv',true) 
@@ -5060,7 +5060,7 @@ ReplyStatus(msg,user,"Reply","⌯︙تم الغاء (الحظر • الكتم) 
 end
 end
 end
-if (text == "تغير المطور الاساسي" or text == "نقل ملكيه البوت" or text == "تغيير المطور الاساسي" or text == "↫ تغير المطور الاساسي ⌔") and msg.reply_to_message_id_ == 0 and Sudo(msg) then 
+if (text == "تغير المطور الاساسي" or text == "نقل ملكيه البوت" or text == "تغيير المطور الاساسي" or text == "↫ تغير المطور الاساسي ⌯") and msg.reply_to_message_id_ == 0 and Sudo(msg) then 
 send(msg.chat_id_, msg.id_,'⌯︙يجب التاكد ان المطور الجديد ارسل start لخاص البوت بعد ذلك يمكنك ارسال ايدي المطور')
 DevANGEL:setex(ANGEL.."ANGEL:EditDev"..msg.sender_user_id_,300,true)
 end
@@ -5428,7 +5428,7 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 if SudoBot(msg) then
-if text == "قائمه العام" and ChCheck(msg) or text == "المحظورين عام" and ChCheck(msg) or text == "المكتومين عام" and ChCheck(msg) or text == "↫ قائمه العام ⌔" and ChCheck(msg) then 
+if text == "قائمه العام" and ChCheck(msg) or text == "المحظورين عام" and ChCheck(msg) or text == "المكتومين عام" and ChCheck(msg) or text == "↫ قائمه العام ⌯" and ChCheck(msg) then 
 local BanAll = DevANGEL:smembers(ANGEL..'ANGEL:BanAll:')
 local MuteAll = DevANGEL:smembers(ANGEL..'ANGEL:MuteAll:')
 if #BanAll ~= 0 then 
@@ -5462,7 +5462,7 @@ text = "⌯︙*لم يتم حظر او كتم اي عضو*"
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
-if text == "المطورين" and ChCheck(msg) or text == "↫ المطورين ⌔" and ChCheck(msg) then 
+if text == "المطورين" and ChCheck(msg) or text == "↫ المطورين ⌯" and ChCheck(msg) then 
 local List = DevANGEL:smembers(ANGEL..'ANGEL:SudoBot:')
 text = "⌯︙قائمة المطورين ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
 for k,v in pairs(List) do
@@ -6348,15 +6348,15 @@ end
 return false
 end
 if SudoBot(msg) then
-if text and text == "الاحصائيات" and ChCheck(msg) or text and text == "↫ الاحصائيات ⌔" then
+if text and text == "الاحصائيات" and ChCheck(msg) or text and text == "↫ الاحصائيات ⌯" then
 local gps = DevANGEL:scard(ANGEL.."ANGEL:Groups") local users = DevANGEL:scard(ANGEL.."ANGEL:Users") 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙احصائيات البوت ↫ ⤈\n⌯︙عدد المشتركين ↫ ❨ '..users..' ❩\n⌯︙عدد المجموعات ↫ ❨ '..gps..' ❩', 1, 'md')
 end
-if text and text == "المشتركين" and ChCheck(msg) or text and text == "↫ المشتركين ⌔" then
+if text and text == "المشتركين" and ChCheck(msg) or text and text == "↫ المشتركين ⌯" then
 local users = DevANGEL:scard(ANGEL.."ANGEL:Users")
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙عدد المشتركين ↫ ❨ '..users..' ❩', 1, 'md')
 end
-if text and text == "المجموعات" and ChCheck(msg) or text and text == "↫ المجموعات ⌔" then
+if text and text == "المجموعات" and ChCheck(msg) or text and text == "↫ المجموعات ⌯" then
 local gps = DevANGEL:scard(ANGEL.."ANGEL:Groups")
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙عدد المجموعات ↫ ❨ '..gps..' ❩', 1, 'md')
 end
@@ -7604,7 +7604,7 @@ if Audios.Info == true then
 local Text ='⌯︙تم اختيار المقطع الصوتي لك'
 keyboard = {} 
 keyboard.inline_keyboard = {
-{{text = '⌔ ANGEL TeAM .',url="t.me/Vc33h"}},
+{{text = '⌯ ANGEL TeAM .',url="t.me/Vc33h"}},
 }
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice='..URL.escape(Audios.info)..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
@@ -7691,22 +7691,22 @@ absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(m
 DevANGEL:set(ANGEL..'ANGEL:Lock:AllRed'..msg.chat_id_,true)
 end
 if SecondSudo(msg) then
-if text == 'تفعيل المغادره' or text == '↫ تفعيل المغادره ⌔' then 
+if text == 'تفعيل المغادره' or text == '↫ تفعيل المغادره ⌯' then 
 local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تفعيل المغادره بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:del(ANGEL.."ANGEL:Left:Bot"..ANGEL)
 end
-if text == 'تعطيل المغادره' or text == '↫ تعطيل المغادره ⌔' then 
+if text == 'تعطيل المغادره' or text == '↫ تعطيل المغادره ⌯' then 
 local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تعطيل المغادره بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:set(ANGEL.."ANGEL:Left:Bot"..ANGEL,true) 
 end 
-if text == 'تفعيل الاذاعه' or text == '↫ تفعيل الاذاعه ⌔' then 
+if text == 'تفعيل الاذاعه' or text == '↫ تفعيل الاذاعه ⌯' then 
 local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تفعيل الاذاعه بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:del(ANGEL.."ANGEL:Send:Bot"..ANGEL)
 end
-if text == 'تعطيل الاذاعه' or text == '↫ تعطيل الاذاعه ⌔' then 
+if text == 'تعطيل الاذاعه' or text == '↫ تعطيل الاذاعه ⌯' then 
 local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تعطيل الاذاعه بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:set(ANGEL.."ANGEL:Send:Bot"..ANGEL,true) 
@@ -8138,7 +8138,7 @@ io.popen(curl)
 end
 end
 end
-if text == "اذاعه بالخاص" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه خاص ⌔" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+if text == "اذاعه بالخاص" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه خاص ⌯" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if DevANGEL:get(ANGEL.."ANGEL:Send:Bot"..ANGEL) and not SecondSudo(msg) then 
 send(msg.chat_id_, msg.id_,"⌯︙الاذاعه معطله من قبل المطور الاساسي")
 return false
@@ -8204,7 +8204,7 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙تم اذاعة "..AbsText.." بنجاح \n⌯︙‏الى ↫ ❨ "..#List.." ❩ مشترك \n ✓", 1, 'md')
 DevANGEL:del(ANGEL.."ANGEL:Send:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 end
-if text == "اذاعه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه عام ⌔" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+if text == "اذاعه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه عام ⌯" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if DevANGEL:get(ANGEL.."ANGEL:Send:Bot"..ANGEL) and not SecondSudo(msg) then 
 send(msg.chat_id_, msg.id_,"⌯︙الاذاعه معطله من قبل المطور الاساسي")
 return false
@@ -8270,7 +8270,7 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙تم اذاعة "..AbsText.." بنجاح \n⌯︙‏في ↫ ❨ "..#List.." ❩ مجموعه \n ✓", 1, 'md')
 DevANGEL:del(ANGEL.."ANGEL:Send:Gp" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 end
-if text == "اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه عام بالتوجيه ⌔" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+if text == "اذاعه بالتوجيه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه عام بالتوجيه ⌯" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if DevANGEL:get(ANGEL.."ANGEL:Send:Bot"..ANGEL) and not SecondSudo(msg) then 
 send(msg.chat_id_, msg.id_,"⌯︙الاذاعه معطله من قبل المطور الاساسي")
 return false
@@ -8293,7 +8293,7 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙تم اذاعة رسالتك بالتوجيه \n⌯︙‏في ↫ ❨ "..#List.." ❩ مجموعه \n ✓", 1, 'md')
 DevANGEL:del(ANGEL.."ANGEL:Send:FwdGp" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 end
-if text == "اذاعه خاص بالتوجيه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه خاص بالتوجيه ⌔" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+if text == "اذاعه خاص بالتوجيه" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه خاص بالتوجيه ⌯" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if DevANGEL:get(ANGEL.."ANGEL:Send:Bot"..ANGEL) and not SecondSudo(msg) then 
 send(msg.chat_id_, msg.id_,"⌯︙الاذاعه معطله من قبل المطور الاساسي")
 return false
@@ -8316,7 +8316,7 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙تم اذاعة رسالتك بالتوجيه \n⌯︙‏الى ↫ ❨ "..#List.." ❩ مشترك \n ✓", 1, 'md')
 DevANGEL:del(ANGEL.."ANGEL:Send:FwdPv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
 end
-if text == "اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه بالتثبيت ⌔" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
+if text == "اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and SudoBot(msg) or text == "↫ اذاعه بالتثبيت ⌯" and msg.reply_to_message_id_ == 0 and SudoBot(msg) then 
 if DevANGEL:get(ANGEL.."ANGEL:Send:Bot"..ANGEL) and not SecondSudo(msg) then 
 send(msg.chat_id_, msg.id_,"⌯︙الاذاعه معطله من قبل المطور الاساسي")
 return false
@@ -8412,12 +8412,12 @@ DevANGEL:set(ANGEL..'DelManagerRep'..msg.chat_id_..'',text)
 return false
 end
 end
-if text == 'حذف رد عام' and SecondSudo(msg) or text == '↫ حذف رد عام ⌔' and SecondSudo(msg) or text == 'مسح رد عام' and SecondSudo(msg) then
+if text == 'حذف رد عام' and SecondSudo(msg) or text == '↫ حذف رد عام ⌯' and SecondSudo(msg) or text == 'مسح رد عام' and SecondSudo(msg) then
 DevANGEL:set(ANGEL.."ANGEL:Add:AllRed"..msg.sender_user_id_,'DelAllRed')
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙حسنا ارسل الكلمه لحذفها " ,  1, "md")
 return false
 end
-if text == 'اضف رد عام' and SecondSudo(msg) or text == '↫ اضف رد عام ⌔' and SecondSudo(msg) then
+if text == 'اضف رد عام' and SecondSudo(msg) or text == '↫ اضف رد عام ⌯' and SecondSudo(msg) then
 DevANGEL:set(ANGEL.."ANGEL:Add:AllRed"..msg.sender_user_id_,'SetAllRed')
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙حسنا ارسل الكلمه الان " ,  1, "md")
 return false
@@ -8480,7 +8480,7 @@ ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌯︙تم حذف ردود الم
 return false
 end
 end
-if  text == "ردود المطور" and SecondSudo(msg) or text == "الردود العام" and SecondSudo(msg) or text == "ردود العام" and SecondSudo(msg) or text == "↫ الردود العام ⌔" and SecondSudo(msg) then
+if  text == "ردود المطور" and SecondSudo(msg) or text == "الردود العام" and SecondSudo(msg) or text == "ردود العام" and SecondSudo(msg) or text == "↫ الردود العام ⌯" and SecondSudo(msg) then
 local redod = DevANGEL:smembers(ANGEL.."ANGEL:Sudo:AllRed")
 MsgRep = '⌯︙ردود المطور ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n'
 for k,v in pairs(redod) do
@@ -8987,7 +8987,7 @@ io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙تم التحديث الى الاصدار الجديد', 1, 'md') 
 end
-if text == 'تحديث' or text == 'تحديث البوت' or text == '↫ تحديث ⌔' then  
+if text == 'تحديث' or text == 'تحديث البوت' or text == '↫ تحديث ⌯' then  
 dofile('ANGEL.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
@@ -9133,7 +9133,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙تم تعطيل الترحيب عند �
 DevANGEL:set(ANGEL..'ANGEL:Lock:BotWelcome',true)
 return false
 end 
-if text and (text == 'تغير معلومات الترحيب' or text == 'تغيير معلومات الترحيب' or text == '↫ تغير معلومات الترحيب ⌔') and SecondSudo(msg) then    
+if text and (text == 'تغير معلومات الترحيب' or text == 'تغيير معلومات الترحيب' or text == '↫ تغير معلومات الترحيب ⌯') and SecondSudo(msg) then    
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙ارسل لي نص الترحيب', 1, 'md') 
 DevANGEL:del(ANGEL..'ANGEL:Text:BotWelcome')
 DevANGEL:del(ANGEL..'ANGEL:Photo:BotWelcome')
