@@ -111,7 +111,7 @@ return config
 end  
 Load_ANGEL() 
 print("\27[36m"..[[                                           
-Source ANGEL For Tofy
+Source ANGEL For HADR
 ]]..'\27[m'.."\n\27[35mServer Information ↬ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\27[m\n\27[36m~ \27[mUser \27[36m: \27[10;32m"..User.."\27[m\n\27[36m~ \27[mIp \27[36m: \27[10;32m"..Ip.."\27[m\n\27[36m~ \27[mName \27[36m: \27[10;32m"..Name.."\27[m\n\27[36m~ \27[mPort \27[36m: \27[10;32m"..Port.."\27[m\n\27[36m~ \27[mUpTime \27[36m: \27[10;32m"..UpTime.."\27[m\n\27[35m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\27[m")
 Config = dofile("./config.lua")
 DevId = Config.DevId
@@ -8998,7 +8998,7 @@ local Users = DevANGEL:smembers(ANGEL.."User_Bot")
 local Groups = DevANGEL:smembers(ANGEL..'Chek:Groups')
 local Sudos = DevANGEL:smembers(ANGEL.."Sudo:User")
 if DevANGEL:get(ANGEL..'Name:Bot') then
-DevANGEL:set(ANGEL..'ANGEL:NameBot',(DevANGEL:get(ANGEL..'Name:Bot') or 'انجل'))
+DevANGEL:set(ANGEL..'ANGEL:NameBot',(DevANGEL:get(ANGEL..'Name:Bot') or 'ساكورا'))
 end
 for i = 1, #Users do
 local id = Users[i]
@@ -9025,7 +9025,7 @@ local list3 = DevANGEL:smembers(ANGEL..'Basic:Constructor'..Groups[i])
 for k,v in pairs(list3) do
 DevANGEL:sadd(ANGEL.."ANGEL:BasicConstructor:"..Groups[i], v)
 end
-local list4 = DevANGEL:smembers(ANGEL..'Manager'..Groups[i])
+local list4 = DevANGEL:smembers(ANGEL..'Manager..Groups[i])
 for k,v in pairs(list4) do
 DevANGEL:sadd(ANGEL.."ANGEL:Managers:"..Groups[i], v)
 end
@@ -9043,7 +9043,7 @@ for i,Lock in pairs(LockList) do
 DevANGEL:set(ANGEL..Lock..Groups[i],true)
 end
 end
-send(msg.chat_id_, msg.id_,'⌯︙تم نقل ↫ '..#Groups..' مجموعه\n⌯︙تم نقل ↫ '..#Users..' مشترك\n⌯︙من التحديث القديم الى التحديث الجديد')
+send(msg.chat_id_, msg.id_,'⌔∮تم نقل ↫ '..#Groups..' مجموعه\n⌔∮تم نقل ↫ '..#Users..' مشترك\n⌔∮من التحديث القديم الى التحديث الجديد')
 end
 if text == 'الملفات' then
 Files = '\n⌯︙الملفات المفعله في البوت ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n'
@@ -9060,7 +9060,7 @@ end
 send(msg.chat_id_, msg.id_,Files)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/SakuraTofy/SakuraFiles/master/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/AngelHadr/AngelFiles/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
@@ -9092,7 +9092,7 @@ end
 if text and text:match("^(تعطيل ملف) (.*)(.lua)$") then
 local FileGet = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
 local FileName = FileGet[2]..'.lua'
-local GetJson, Res = https.request("https://raw.githubusercontent.com/SakuraTofy/SakuraFiles/master/SakuraFiles/"..FileName)
+local GetJson, Res = https.request("https://raw.githubusercontent.com/AngelHadr/AngelFiles/main/AngelFiles/"..FileName)
 if Res == 200 then
 os.execute("rm -fr Files/"..FileName)
 send(msg.chat_id_, msg.id_,"\n⌯︙الملف ↫ *"..FileName.."*\n⌯︙تم تعطيله وحذفه من البوت بنجاح") 
@@ -9104,7 +9104,7 @@ end
 if text and text:match("^(تفعيل ملف) (.*)(.lua)$") then
 local FileGet = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
 local FileName = FileGet[2]..'.lua'
-local GetJson, Res = https.request("https://raw.githubusercontent.com/SakuraTofy/SakuraFiles/master/SakuraFiles/"..FileName)
+local GetJson, Res = https.request("https://raw.githubusercontent.com/AngelHadr/AngelFiles/main/AngelFiles/"..FileName)
 if Res == 200 then
 local ChekAuto = io.open("Files/"..FileName,'w+')
 ChekAuto:write(GetJson)
