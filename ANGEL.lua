@@ -935,6 +935,28 @@ DevANGEL:del(ANGEL.."List:Cmd:Group:New"..msg.chat_id_)
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙تم حذف الاوامر المضافه في المجموعه", 1, 'html')
 end
+if text == "ترتيب الاوامر" then
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":ا","ايدي")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"ا")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":تك","تنزيل الكل")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"تك")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":م","رفع مميز")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"م")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":اد","رفع ادمن")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"اد")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":مد","رفع مدير")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"مد")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":من","رفع منشئ")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"من")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":اس","رفع منشئ اساسي")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"اس")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":تعط","تعطيل الايدي بالصوره")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"تعط")
+DevANGEL:set(ANGEL.."Set:Cmd:Group:New1"..msg.chat_id_..":تفع","تفعيل الايدي بالصوره")
+DevANGEL:sadd(ANGEL.."List:Cmd:Group:New"..msg.chat_id_,"تفع")
+send(msg.chat_id_, msg.id_,"⌯︙تم ترتيب الاوامر بالشكل التالي ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌯︙ايدي ↫ ا\n⌯︙تنزيل الكل ↫ تك\n⌯︙رفع مميز ↫ م\n⌯︙رفع ادمن ↫ اد \n⌯︙رفع مدير ↫ مد \n⌯︙رفع منشئ ↫ من \n⌯︙رفع منشئ اساسي ↫ اس  \n⌯︙تعطيل الايدي بالصوره ↫ تعط\n⌯︙تفعيل الايدي بالصوره ↫ تفع\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉")  
+end
+if text == "اضف امر" or text
 if text == "اضف امر" or text == "اضافة امر" or text == "اضافه امر" and ChCheck(msg) then
 DevANGEL:set(ANGEL.."Set:Cmd:Group"..msg.chat_id_..":"..msg.sender_user_id_,"true") 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌯︙ارسل الامر القديم", 1, 'html')
@@ -4076,6 +4098,84 @@ local user = text:match('رفع منشئ اساسي (%d+)')
 DevANGEL:sadd(ANGEL..'ANGEL:BasicConstructor:'..msg.chat_id_,user)
 ReplyStatus(msg,user,"Reply","⌯︙تم رفعه منشئ اساسي")  
 end
+if text ==('رفع مالك') and ChCheck(msg) then
+function raf_reply(extra, result, success)
+DevANGEL:sadd(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_,result.sender_user_id_)
+ReplyStatus(msg,result.sender_user_id_,"Reply","⌯︙تم رفعه مالك")  
+end 
+if tonumber(tonumber(msg.reply_to_message_id_)) == 0 then
+else
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),raf_reply)
+end end
+if text and text:match('^رفع مالك @(.*)') and ChCheck(msg) then
+local username = text:match('^رفع مالك @(.*)')
+function promreply(extra,result,success)
+if result.id_ then
+DevANGEL:sadd(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_,result.id_)
+ReplyStatus(msg,result.id_,"Reply","⌯︙تم رفعه مالك")  
+else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙*المعرف غير صحيح*', 1, 'md')
+end end 
+resolve_username(username,promreply)
+end
+if text and text:match('^رفع مالك (%d+)') and ChCheck(msg) then
+local user = text:match('رفع مالك (%d+)')
+DevANGEL:sadd(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_,user)
+ReplyStatus(msg,user,"Reply","⌯︙تم رفعه مالك")  
+end
+if text ==('تنزيل مالك') and ChCheck(msg) then
+function prom_reply(extra, result, success)
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
+local admins = data.members_
+for i=0 , #admins do
+if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
+if tonumber(result.sender_user_id_) == tonumber(admins[i].user_id_) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙لا يمكن تنزيل المالك الاساسي', 1, 'md')
+else
+DevANGEL:srem(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_,result.sender_user_id_)
+ReplyStatus(msg,result.sender_user_id_,"Reply","⌯︙تم تنزيله من المالكين")  
+end end end
+end,nil)
+end 
+if tonumber(tonumber(msg.reply_to_message_id_)) == 0 then
+else
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),prom_reply)
+end 
+end
+if text and text:match('^تنزيل مالك @(.*)') and ChCheck(msg) then
+local username = text:match('^تنزيل مالك @(.*)')
+function promreply(extra,result,success)
+if result.id_ then
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
+local admins = data.members_
+for i=0 , #admins do
+if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
+if tonumber(result.id_) == tonumber(admins[i].user_id_) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙لا يمكن تنزيل المالك الاساسي', 1, 'md')
+else
+DevANGEL:srem(DevANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_,result.id_)
+ReplyStatus(msg,result.id_,"Reply","⌯︙تم تنزيله من المالكين")  
+end end end
+end,nil)
+else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙*المعرف غير صحيح*', 1, 'md')
+end end 
+resolve_username(username,promreply)
+end
+if text and text:match('^تنزيل مالك (%d+)') and ChCheck(msg) then
+local user = text:match('تنزيل مالك (%d+)')
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
+local admins = data.members_
+for i=0 , #admins do
+if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
+if tonumber(user) == tonumber(admins[i].user_id_) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙لا يمكن تنزيل المالك الاساسي', 1, 'md')
+else
+DevANGEL:srem(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_,user)
+ReplyStatus(msg,user,"Reply","⌯︙تم تنزيله من المالكين")  
+end end end
+end,nil)
+end end
 --  Rem BasicConstructor  --
 if text ==('تنزيل منشئ اساسي') and ChCheck(msg) then
 function prom_reply(extra, result, success)
@@ -5305,6 +5405,22 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end end 
 if AbsConstructor(msg) then
+if text == "المالكين" and ChCheck(msg) then 
+local List = ANGEL:smembers(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_)
+text = "⌯︙قائمة المالكين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+for k,v in pairs(List) do
+local username = DevAbs:get(DevProx..'Save:UserName'..v)
+if username then
+text = text..""..k.."~ : [@"..username.."]\n"
+else
+text = text..""..k.."~ : `"..v.."`\n"
+end end
+if #List == 0 then 
+text = "⌯︙*لا يوجد مالكين*"
+end
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
+end 
+if AbsConstructor(msg) then
 if text == "المنشئين الاساسيين" and ChCheck(msg) or text == "منشئين اساسيين" and ChCheck(msg) or text == "المنشئين الاساسين" and ChCheck(msg) then 
 local List = DevANGEL:smembers(ANGEL..'ANGEL:BasicConstructor:'..msg.chat_id_)
 text = "⌯︙قائمة المنشئين الاساسيين ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
@@ -6451,17 +6567,27 @@ end
 return false
 end 
 end
-if text == "تفعيل امسح" and Constructor(msg) and ChCheck(msg) then
-local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تفعيل امسح بنجاح'
+if text and (text == "تفعيل امسح" or text == "تفعيل المسح التلقائي" or text == "تفعيل الحذف التلقائي") and Constructor(msg) and ChCheck(msg) then
+local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تفعيل امسح مع ميزة الحذف التلقائي للميديا'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:set(ANGEL..'ANGEL:Lock:Clean'..msg.chat_id_,true)  
 end
-if text == "تعطيل امسح" and Constructor(msg) and ChCheck(msg) then
-local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تعطيل امسح بنجاح'
+if text and (text == "تعطيل امسح" or text == "تعطيل المسح التلقائي" or text == "تعطيل الحذف التلقائي") and Constructor(msg) and ChCheck(msg) then
+local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تعطيل امسح مع ميزة الحذف التلقائي للميديا'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ANGELTEAM, 14, string.len(msg.sender_user_id_))
 DevANGEL:del(ANGEL..'ANGEL:Lock:Clean'..msg.chat_id_) 
 end
-if msg and DevANGEL:get(ANGEL..'ANGEL:Lock:Clean'..msg.chat_id_) and DevANGEL:scard(ANGEL.."ANGEL:cleaner"..msg.chat_id_) >= 200 then 
+if text and (text:match("^تعين عدد المسح (%d+)$") or text:match("^تعيين عدد المسح (%d+)$") or text:match("^تعين عدد الحذف (%d+)$") or text:match("^تعيين عدد الحذف (%d+)$")) and Constructor(msg) then   
+local Num = text:match("تعين عدد المسح (%d+)$") or text:match("تعيين عدد المسح (%d+)$") or text:match("تعين عدد الحذف (%d+)$") or text:match("تعيين عدد الحذف (%d+)$")
+if tonumber(Num) < 50 or tonumber(Num) > 200 then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙قم بتحديد عدد اكبر من 50 واصغر من 200 للحذف التلقائي', 1, 'md')
+else
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌯︙تم وضع ↫ *'..Num..'* من الميديا للحذف التلقائي', 1, 'md')
+DevANGEL:set(ANGEL..'ANGEL:CleanNum'..msg.chat_id_,Num) 
+end end 
+if msg and DevANGEL:get(ANGEL..'ANGEL:Lock:Clean'..msg.chat_id_) then
+if DevANGEL:get(ANGEL..'ANGEL:CleanNum'..msg.chat_id_) then CleanNum = DevANGEL:get(ANGEL..'ANGEL:CleanNum'..msg.chat_id_) else CleanNum = 200 end
+if DevANGEL:scard(ANGEL.."ANGEL:cleaner"..msg.chat_id_) >= tonumber(CleanNum) then 
 local List = DevANGEL:smembers(ANGEL.."ANGEL:cleaner"..msg.chat_id_)
 local Del = 0
 for k,v in pairs(List) do
@@ -6471,6 +6597,7 @@ DeleteMessage(msg.chat_id_,{[0]=Message})
 end
 SendText(msg.chat_id_,"⌯︙تم حذف "..Del.." من الميديا تلقائيا",0,'md') 
 DevANGEL:del(ANGEL.."ANGEL:cleaner"..msg.chat_id_)
+end 
 end 
 if Cleaner(msg) then
 if DevANGEL:get(ANGEL..'ANGEL:Lock:Clean'..msg.chat_id_) then 
@@ -7156,6 +7283,19 @@ DevANGEL:del(ANGEL..'ANGEL:MuteAll:')
 ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌯︙تم حذف قائمة العام")  
 end
 end
+if txts[2] == 'المالكين' or txtss[2] == 'المالكين' then
+DevANGEL:del(ANGEL..'ANGEL:AbsConstructor:'..msg.chat_id_)
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,dp) 
+local admins = dp.members_
+for i=0 , #admins do
+if dp.members_[i].status_.ID == "ChatMemberStatusCreator" then
+DevANGEL:sadd(ANGEL.."ANGEL:AbsConstructor:"..msg.chat_id_,admins[i].user_id_)
+end 
+end  
+end,nil)
+ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌯︙تم حذف المالكين")  
+end
+end
 if AbsConstructor(msg) then
 if txts[2] == 'المنشئين الاساسيين' or txtss[2] == 'المنشئين الاساسيين' then
 ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌯︙تم حذف المنشئين الاساسيين")  
@@ -7365,6 +7505,25 @@ if text and text:match("^كول (.*)$") then
 local txt = {string.match(text, "^(كول) (.*)$")}
 Dev_Abs(msg.chat_id_,0, 1, txt[2], 1, 'md')
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
+end
+if text == "تفعيل انطق" and Manager(msg) and ChCheck(msg) then
+local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تفعيل ميزة انطق'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevANGEL:del(ANGEL..'ANGEL:Antk:Abs'..msg.chat_id_) 
+end
+if text == "تعطيل انطق" and Manager(msg) and ChCheck(msg) then
+local ANGELTEAM = '⌯︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌯︙تم تعطيل ميزة انطق'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevANGEL:set(ANGEL..'ANGEL:Antk:Abs'..msg.chat_id_,true)  
+end
+if text and text:match("^انطق (.*)$") and not DevANGEL:get(ANGEL..'ANGEL:Antk:Abs'..msg.chat_id_) then
+local UrlAntk = https.request('https://apiabs.ml/Antk.php?abs='..URL.escape(text:match("^انطق (.*)$")))
+Antk = JSON.decode(UrlAntk)
+if UrlAntk.ok ~= false then
+download_to_file("https://translate"..Antk.result.google..Antk.result.code.."UTF-8"..Antk.result.utf..Antk.result.translate.."&tl=ar-IN",Antk.result.translate..'.mp3') 
+sendAudio(msg.chat_id_, msg.id_, 0, 1,nil, './'..Antk.result.translate..'.mp3')  
+os.execute('rm -rf ./'..Antk.result.translate..'.mp3') 
+end
 end
 if DevANGEL:get(ANGEL..'ANGEL:setrules'..msg.chat_id_..':'..msg.sender_user_id_) then 
 if text == 'الغاء' then 
@@ -8606,7 +8765,7 @@ else
 local Help = DevANGEL:get(ANGEL..'ANGEL:Help1')
 local text =  [[
 ⌯︙اوامر حماية المجموعه ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙قفل • فتح ↫ الروابط
 ⌯︙قفل • فتح ↫ المعرفات
 ⌯︙قفل • فتح ↫ البوتات
@@ -8639,9 +8798,9 @@ local text =  [[
 ⌯︙قفل • فتح ↫ الانكليزيه
 ⌯︙قفل • فتح ↫ الفارسيه
 ⌯︙قفل • فتح ↫ التفليش
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙اوامر حمايه اخرى ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙قفل • فتح + الامر ↫ ⤈
 ⌯︙التكرار بالطرد
 ⌯︙التكرار بالكتم
@@ -8649,7 +8808,7 @@ local text =  [[
 ⌯︙الفارسيه بالطرد
 ⌯︙البوتات بالطرد
 ⌯︙البوتات بالتقيد
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙[Source Channel](https://t.me/Vc33h)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (Help or text), 1, 'md')
@@ -8674,7 +8833,7 @@ else
 local Help = DevANGEL:get(ANGEL..'ANGEL:Help2')
 local text =  [[
 ⌯︙اوامر الادمنيه ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙الاعدادت
 ⌯︙تاك للكل 
 ⌯︙انشاء رابط
@@ -8693,24 +8852,24 @@ local text =  [[
 ⌯︙ضع • حذف ↫ قوانين
 ⌯︙اضف • حذف ↫ صلاحيه
 ⌯︙الصلاحيات • حذف الصلاحيات
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙ضع سبام + العدد
 ⌯︙ضع تكرار + العدد
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙رفع مميز • تنزيل مميز
 ⌯︙المميزين • حذف المميزين
 ⌯︙كشف القيود • رفع القيود
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙حذف • مسح + بالرد
 ⌯︙منع • الغاء منع
 ⌯︙قائمه المنع
 ⌯︙حذف قائمه المنع
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تفعيل • تعطيل ↫ الرابط
 ⌯︙تفعيل • تعطيل ↫ الالعاب
 ⌯︙تفعيل • تعطيل ↫ الترحيب
 ⌯︙تفعيل • تعطيل ↫ كشف الاعدادات
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙طرد المحذوفين
 ⌯︙طرد ↫ بالرد • بالمعرف • بالايدي
 ⌯︙كتم • الغاء كتم
@@ -8719,12 +8878,12 @@ local text =  [[
 ⌯︙المكتومين • حذف المكتومين
 ⌯︙المقيدين • حذف المقيدين
 ⌯︙المحظورين • حذف المحظورين
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تقييد دقيقه + عدد الدقائق
 ⌯︙تقييد ساعه + عدد الساعات
 ⌯︙تقييد يوم + عدد الايام
 ⌯︙الغاء تقييد ↫ لالغاء التقييد بالوقت
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙[Source Channel](https://t.me/Vc33h)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (Help or text), 1, 'md')
@@ -8749,7 +8908,7 @@ else
 local Help = DevANGEL:get(ANGEL..'ANGEL:Help3')
 local text =  [[
 ⌯︙اوامر المدراء ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙فحص البوت
 ⌯︙ضع اسم + الاسم
 ⌯︙اضف • حذف ↫ رد
@@ -8759,33 +8918,33 @@ local text =  [[
 ⌯︙منع ↫ بالرد على ( ملصق • صوره • متحركه )
 ⌯︙حذف قائمه منع + ↫ ⤈
 ( الصور • المتحركات • الملصقات )
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تنزيل الكل
 ⌯︙رفع ادمن • تنزيل ادمن
 ⌯︙الادمنيه • حذف الادمنيه
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تثبيت
 ⌯︙الغاء التثبيت
 ⌯︙اعاده التثبيت
 ⌯︙الغاء تثبيت الكل
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تغير رد + اسم الرتبه + النص ↫ ⤈
 ⌯︙المطور • منشئ الاساسي
 ⌯︙المنشئ • المدير • الادمن
 ⌯︙المميز • المنظف • العضو
 ⌯︙حذف ردود الرتب
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تغيير الايدي ↫ لتغيير الكليشه
 ⌯︙تعيين الايدي ↫ لتعيين الكليشه
 ⌯︙حذف الايدي ↫ لحذف الكليشه
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تفعيل • تعطيل + الامر ↫ ⤈
 ⌯︙اطردني • الايدي بالصوره • الابراج
-⌯︙معاني الاسماء • اوامر النسب
+⌯︙معاني الاسماء • اوامر النسب • انطق
 ⌯︙الايدي • تحويل الصيغ • اوامر التحشيش
 ⌯︙ردود المدير • ردود المطور • التحقق
 ⌯︙ضافني • حساب العمر • الزخرفه
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙[Source Channel](https://t.me/Vc33h)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (Help or text), 1, 'md')
@@ -8810,9 +8969,11 @@ else
 local Help = DevANGEL:get(ANGEL..'ANGEL:Help4')
 local text =  [[
 ⌯︙اوامر المنشئين ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تنزيل الكل
 ⌯︙الميديا • امسح
+⌯︙تعين عدد الحذف
+⌯︙ترتيب الاوامر
 ⌯︙اضف • حذف ↫ امر
 ⌯︙حذف الاوامر المضافه
 ⌯︙الاوامر المضافه
@@ -8825,9 +8986,9 @@ local text =  [[
 ⌯︙تفعيل • تعطيل + الامر ↫ ⤈
 ⌯︙نزلني • امسح
 ⌯︙الحظر • الكتم
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙اوامر المنشئين الاساسيين ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙وضع لقب + اللقب
 ⌯︙تفعيل • تعطيل ↫ الرفع
 ⌯︙رفع منشئ • تنزيل منشئ
@@ -8835,14 +8996,14 @@ local text =  [[
 ⌯︙رفع • تنزيل ↫ مشرف
 ⌯︙رفع بكل الصلاحيات
 ⌯︙حذف القوائم
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-⌯︙اوامر منشئ المجموعه ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+⌯︙اوامر المالكين ↫ ⤈
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙رفع • تنزيل ↫ منشئ اساسي
 ⌯︙حذف المنشئين الاساسيين 
 ⌯︙المنشئين الاساسيين 
 ⌯︙حذف جميع الرتب
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙[Source Channel](https://t.me/Vc33h)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (Help or text), 1, 'md')
@@ -8867,7 +9028,7 @@ else
 local Help = DevANGEL:get(ANGEL..'ANGEL:Help5')
 local text =  [[
 ⌯︙اوامر المطورين ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙الكروبات
 ⌯︙المطورين
 ⌯︙المشتركين
@@ -8876,16 +9037,18 @@ local text =  [[
 ⌯︙اسم البوت + غادر
 ⌯︙اسم البوت + تعطيل
 ⌯︙كشف + -ايدي المجموعه
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+⌯︙رفع مالك • تنزيل مالك
+⌯︙المالكين • حذف المالكين
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙رفع • تنزيل ↫ مدير عام
 ⌯︙حذف • المدراء العامين 
 ⌯︙رفع • تنزيل ↫ ادمن عام
 ⌯︙حذف • الادمنيه العامين 
 ⌯︙رفع • تنزيل ↫ مميز عام
 ⌯︙حذف • المميزين عام 
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙اوامر المطور الاساسي ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تحديث
 ⌯︙الملفات
 ⌯︙المتجر
@@ -8919,14 +9082,14 @@ local text =  [[
 ⌯︙الثانويين • حذف الثانويين
 ⌯︙تعيين • حذف ↫ كليشة الايدي
 ⌯︙اذاعه للكل بالتوجيه ↫ بالرد
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙تفعيل ملف + اسم الملف
 ⌯︙تعطيل ملف + اسم الملف
 ⌯︙تفعيل • تعطيل + الامر ↫ ⤈
 ⌯︙الاذاعه • الاشتراك الاجباري
 ⌯︙ترحيب البوت • المغادره
 ⌯︙البوت الخدمي • التواصل
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙[Source Channel](https://t.me/Vc33h)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (Help or text), 1, 'md')
@@ -8948,7 +9111,7 @@ if text == "م٦" or text == "م6" or text == "اوامر6" or text == "اوام
 local Help = DevANGEL:get(ANGEL..'ANGEL:Help6')
 local text =  [[
 ⌯︙اوامر الاعضاء ↫ ⤈
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙السورس • موقعي • رتبتي • معلوماتي 
 ⌯︙رسائلي • حذف رسائلي • اسمي • معرفي 
 ⌯︙ايدي •ايديي • جهاتي • غنيلي • الالعاب 
@@ -8958,7 +9121,7 @@ local text =  [[
 ⌯︙رقمي •ايدي المجموعه • معلومات المجموعه 
 ⌯︙نسبه الحب • نسبه الكره • نسبه الغباء 
 ⌯︙نسبه الرجوله • نسبه الانوثه • التفاعل
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙صلاحياتي
 ⌯︙كول + الكلمه
 ⌯︙زخرفه + اسمك
@@ -8972,7 +9135,8 @@ local text =  [[
 ⌯︙صلاحياته ↫ بالرد • بالمعرف • بالايدي
 ⌯︙ايدي • كشف  ↫ بالرد • بالمعرف • بالايدي
 ⌯︙تحويل + بالرد ↫ صوره • ملصق • صوت • بصمه
-┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
+⌯︙انطق + الكلام تدعم جميع اللغات مع الترجمه للعربي
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌯︙[Source Channel](https://t.me/Vc33h)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (Help or text), 1, 'md')
@@ -9230,6 +9394,7 @@ echo '⌯︙نظام التشغيل ↫ ⤈\n`'"$LinuxVersion"'`'
 echo '┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌯︙الذاكره العشوائيه ↫ ⤈\n`'"$MemoryUsage"'`'
 echo '┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌯︙وحدة التخزين ↫ ⤈\n`'"$HardDisk"'`'
 echo '┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌯︙المعالج ↫ ⤈\n`'"`grep -c processor /proc/cpuinfo`""Core ~ {$Percentage%} "'`'
+echo '┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌯︙موقع السيرفر ↫ ⤈\n`curl http://th3boss.com/ip/location`'*'
 echo '┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌯︙الدخول ↫ ⤈\n`'`whoami`'`'
 echo '┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌯︙مدة تشغيل السيرفر ↫ ⤈\n`'"$UpTime"'`'
 ]]):read('*a'), 1, 'md')
